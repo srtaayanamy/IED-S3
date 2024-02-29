@@ -1,4 +1,4 @@
-# Aplicação Prática 1: Desenvolver em sala: Criarem uma lista de tarefas para um dia e escrever um script que adicione, remova e altere tarefas.
+#Aplicação Prática 1: Criarem uma lista de tarefas para um dia e escrever um script que adicione, remova e altere tarefas.
 
 tarefas = []
 #declaração das funçoes de adicionar,remover,alterar e exibir
@@ -24,8 +24,8 @@ def exibir_lista(tarefas):
     if tarefas:
         print("Lista de tarefas:")
         for i, tarefa in enumerate(tarefas, start=1):
-            # enumerate retorna um objeto enumerado que contém pares de índice e valor
-            #f"{i}. {tarefa}" --> f mostra q é string
+# enumerate retorna um objeto enumerado que contém pares de índice e valor
+#f"{i}. {tarefa}" --> f mostra q é string
             print(f"{i}. {tarefa}")
     else:
         print("Lista vazia.")

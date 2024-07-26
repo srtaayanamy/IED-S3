@@ -10,7 +10,7 @@ def adicionar_livro(biblioteca, titulo, autor, genero):
 
 #depois de muito sofrer e ler artigos sobre dicionários em python, descobri que nao se pode chamar uma chave que nao existe ainda :) foi traumatizante... 
 
-#ai eu pensei que deveria ter algo pra verificar e coloquei o get, mas não sei se é a melhor maneira pra verificar pq n lembro de vc ter comentado sobre outra e aparentemente funciona, mas qualquer coisa eu mudo depois.
+#ai eu pensei que deveria ter algo pra verificar e coloquei o .keys, mas não sei se é a melhor maneira pra verificar pq n lembro de vc ter comentado sobre outra e aparentemente funciona, mas qualquer coisa eu mudo depois.
 
 def remover_livro(titulo, biblioteca):
     #dando erro aqui

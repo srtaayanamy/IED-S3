@@ -3,18 +3,18 @@
 biblioteca = {}
 
 def adicionar_livro(biblioteca, titulo, autor, genero):
-    if titulo not in biblioteca.keys():
+    if titulo not in biblioteca:
         biblioteca[titulo] = {}
     biblioteca[titulo]['autor'] = autor
     biblioteca[titulo]['genero'] = genero
 
 #depois de muito sofrer e ler artigos sobre dicionários em python, descobri que nao se pode chamar uma chave que nao existe ainda :) foi traumatizante... 
 
-#ai eu pensei que deveria ter algo pra verificar e coloquei o .keys, mas não sei se é a melhor maneira pra verificar pq n lembro de vc ter comentado sobre outra e aparentemente funciona, mas qualquer coisa eu mudo depois.
+#ai eu pensei que deveria ter algo pra verificar e coloquei o .keys, pq na minha cabeça ele faria a busca das chaves, só q Italo me explicou que ele não era pra isso
 
 def remover_livro(titulo, biblioteca):
     #dando erro aqui
-    if titulo in biblioteca.keys():
+    if titulo in biblioteca:
         del biblioteca[titulo]
     else:
         print('O livro não foi encontrado.\n')

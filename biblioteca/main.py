@@ -1,5 +1,4 @@
 '''SISTEMA BIBLIOTECA'''
-
 biblioteca = {}
 
 def adicionar_livro(biblioteca, titulo, autor, genero):
@@ -8,20 +7,30 @@ def adicionar_livro(biblioteca, titulo, autor, genero):
     biblioteca[titulo]['autor'] = autor
     biblioteca[titulo]['genero'] = genero
 
-#depois de muito sofrer e ler artigos sobre dicionários em python, descobri que nao se pode chamar uma chave que nao existe ainda :) foi traumatizante... 
+#depois de muito sofrer e ler artigos sobre dicionários em python, descobri que não se pode chamar uma chave que nao existe ainda :) foi traumatizante... 
 
-#ai eu pensei que deveria ter algo pra verificar e coloquei o .keys, pq na minha cabeça ele faria a busca das chaves, só q Italo me explicou que ele não era pra isso
-
-def remover_livro(titulo, biblioteca):
-    #dando erro aqui
+def remover_livro(biblioteca, titulo):
     if titulo in biblioteca:
         del biblioteca[titulo]
+        print('\nO livro foi removido.\n')
     else:
-        print('O livro não foi encontrado.\n')
+        print('\nO livro não foi encontrado.\n')
 
+def buscar_livro(biblioteca, titulo):
+        if titulo in biblioteca:
+            print('\nO livro foi encontrado.\n')
+        else:
+            print('\nO livro não foi encontrado.\n')
+
+def listar_livros(biblioteca, titulo):
+    if biblioteca:
+        for titulo in biblioteca.keys():
+            print(titulo)
+    else:
+        print('A biblioteca está vazia, adicione alguk livro.\n')
 
 def menu():
-    return input('SISTEMA BIBLIOTECA\nEscolha a opção:\n [1]Adicionar livro na biblioteca.\n [2]Remover livro da biblioteca.\n [3]Buscar livro\n [4]Listar livros\n [5]Sair\n')
+    return input('\nSISTEMA BIBLIOTECA\nEscolha a opção:\n [1]Adicionar livro na biblioteca\n [2]Remover livro da biblioteca\n [3]Buscar livro\n [4]Listar livros\n [5]Sair\n')
 
 def main():
     while True:
@@ -32,11 +41,19 @@ def main():
             genero = input('Por favor, digite o gênero do livro: ')
             adicionar_livro(biblioteca, titulo, autor, genero)
             #queria muito tirar essas chaves do print, infelizmente fica pra proxima
-            print(biblioteca)
 
         elif esc == '2':
             titulo = input('Qual exemplar deseja remover da biblioteca? ')
             remover_livro(biblioteca, titulo)
+            print('Lista de livros da biblioteca: ', biblioteca)
+
+        elif esc == '3':
+            titulo = input('Qual livro deseja buscar? ')
+            buscar_livro(biblioteca, titulo)
+
+        elif esc == '4':
+            print('Lista de livros da biblioteca: ')
+            listar_livros(biblioteca, titulo)   
 
         elif esc == '5':
             print("ENCERRANDO PROGRAMA...\n")

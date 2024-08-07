@@ -1,6 +1,8 @@
 '''Sistema de hotelaria'''
 #adicionar reservas, cancelar reservas, buscar reservas pelo nome do hóspede e listar todas as reservas.
 
+#arrumar o id e a função remover
+
 def adc_reserva(reservas, id, nome, numero, checkin, checkout):
         id += 1
         reserva = {
@@ -34,6 +36,42 @@ def lis_reservas(reservas):
     for reserva in reservas:
         print(reserva)
 
+def edi_reservas(reservas, opc):
+    if opc == '1':
+        nome = input('\nQual o nome que deseja editar?\n')
+        for reserva in reservas:
+            if reserva['nome'] == nome:
+                novo_nome = input('\nDigite o novo nome do cliente: \n')
+                reserva['nome'] = novo_nome 
+                print('\nNome alterado com sucesso!\n')
+
+    elif opc == '2':
+        numero = input('\nQual o quarto que você deseja alterar?\n')
+        for reserva in reservas:
+            if reserva['numero'] == numero:
+                novo_numero = input('\nDigite o novo quarto do cliente: \n')
+                reserva['numero'] = novo_numero
+                print('\nQuarto alterado com sucesso!')
+
+    elif opc == '3':
+        nome = input('\nDigite o cliente que você deseja editar o checkin: \n')
+        for reserva in reservas:
+            if reserva['nome'] == nome:
+                novo_checkin = input('\nDigite o novo checkin: \n')
+                reserva['checkin'] = novo_checkin
+                print('\nCheckin alterado com sucesso!')
+
+    elif opc == '4':
+        nome = input('\nDigite o cliente que você deseja editar o checkout: \n')
+        for reserva in reservas:
+            if reserva['nome'] == nome:
+                novo_checkout = input('\nDigite o novo checkout: \n')
+                reserva['checkout'] = novo_checkout
+                print('\nCheckout alterado com sucesso!')
+
+    else:
+        print('\nOPÇÃO INVÁLIDA. Escolha outra opção.')
+
 def menu():
     return input('\n O QUE DESEJA FAZER?\n[1]Fazer reserva\n[2]Cancelar reserva\n[3]Buscar Reserva\n[4]Listar Reservas\n[5]Editar reserva\n[6]Sair\n')
 
@@ -63,7 +101,8 @@ def main():
             lis_reservas(reservas)
 
         elif esc == '5':
-            pass
+            opc = input('\n O QUE VOCÊ DESEJA EDITAR?\n[1]Nome\n[2]Quarto\n[3]Checkin\n[4]Checkout\n')
+            edi_reservas(reservas, opc)
 
         elif esc == '6':
             print('\nENCERRANDO SISTEMA...')

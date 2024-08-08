@@ -1,8 +1,6 @@
 '''Sistema de hotelaria'''
 #adicionar reservas, cancelar reservas, buscar reservas pelo nome do hóspede e listar todas as reservas.
 
-#colocar a verificação de datas e quartos 
-
 def adc_reserva(reservas, id_ant, nome, numero, checkin, checkout):
         id_res = id_ant + 1
         reserva = {
@@ -33,8 +31,11 @@ def bus_reservas(reservas, nome):
         print('\nReserva não encontrada.\n')
 
 def lis_reservas(reservas):
-    for reserva in reservas:
-        print(reserva)
+    if reservas:
+        for reserva in reservas:
+            print(reserva)
+    else:
+        print('\nNenhuma reserva encontrada.\n')
 
 def edi_reservas(reservas, opc):
     if opc == '1':
@@ -72,6 +73,26 @@ def edi_reservas(reservas, opc):
     else:
         print('\nOPÇÃO INVÁLIDA. Escolha outra opção.')
 
+def ver_data(data1, data2):
+    dia1, mes1, ano1 = map(int, data1.split('/'))
+    dia2, mes2, ano2 = map(int, data2.split('/'))
+
+    if ano1 != ano2:
+        return ano1 - ano2
+    if mes1 != mes2:
+        return mes1 - mes2
+    return dia1 - dia2
+    
+def ver_disp(reservas, numero, checkin, checkout):
+    for reserva in reservas:
+        if reserva['numero'] == numero:
+            reservas_checkin = reserva['checkin']
+            reservas_checkout = reserva['checkout']
+
+            if not (ver_data(checkout, reservas_checkin) <= 0 or ver_data(checkin, reservas_checkout) >= 0):
+                return False    
+    return True
+            
 def menu():
     return input('\n O QUE DESEJA FAZER?\n[1]Fazer reserva\n[2]Cancelar reserva\n[3]Buscar Reserva\n[4]Listar Reservas\n[5]Editar reserva\n[6]Sair\n')
 
@@ -81,12 +102,16 @@ def main():
     while True:
         esc = menu()
         if esc == '1':
-            nome = input ('Nome do cliente: ')
-            numero = input ('Número do quarto: ')
-            checkin = input ('Data de entrada: ')
-            checkout = input ('Data de saída: ')
-            id_ant = (adc_reserva(reservas, id_ant, nome, numero, checkin, checkout))
-            
+            nome = input('Nome do cliente: ')
+            numero = input('Número do quarto: ')
+            checkin = input('Data de entrada (DD/MM/AAAA): ')
+            checkout = input('Data de saída (DD/MM/AAAA): ')
+
+            if ver_disp(reservas, numero, checkin, checkout):
+                id_ant = adc_reserva(reservas, id_ant, nome, numero, checkin, checkout)
+            else:
+                print('\nA reserva não foi feita. O quarto está indisponível nas datas informadas.\n')
+
         elif esc == '2':
             id_res = int(input('\nNº da reserva a ser cancelada: '))
             can_reservas(reservas, id_res)

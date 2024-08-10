@@ -1,5 +1,5 @@
 '''Sistema de estoque'''
-#O sistema deve permitir ao usuário adicionar, remover, atualizar, visualizar todos e por ID, filtrar produtos e gerar relatorio dos produtos no estoque. 
+#o sistema deve permitir ao usuário adicionar, remover, atualizar, visualizar todos e por ID, filtrar produtos e gerar relatorio dos produtos no estoque. 
 
 def adc_produto(produtos, id_ant, nome, quantidade, preco):
     id_prod = id_ant + 1

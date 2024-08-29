@@ -1,3 +1,5 @@
+'''SISTEMA CALCULADORA'''
+
 class Calculadora:
     def __init__(self):
         pass
@@ -19,7 +21,7 @@ class Calculadora:
 def main():
     while True:
         calculadora = Calculadora()
-        print('\nCALCULADORA\n[1]SOMAR\n[2]SUBTRAIR\n[3]MULTIPLICAÇÃO\n[4]DIVIDIR\n[5]SAIR\n')
+        print('\nCALCULADORA\n[1]Somar\n[2]Subtrair\n[3]Multiplicação\n[4]Dividir\n[5]Sair\n')
         operacao = int(input('DIGITE O QUE DESEJA FAZER: '))
         if operacao == 5:
             print('\nENCERRANDO SISTEMA\n')

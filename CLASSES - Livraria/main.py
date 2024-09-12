@@ -14,6 +14,10 @@ class Livro:
         pass
 
     def adicionar_estoque(self, titulo_dig, quant_dig):
+        if quant_dig <= 0:
+            print('\nA QUANTIDADE DEVE SER POSITIVA\n')
+            return
+
         for exemplar in Livro.livros:
             if exemplar['Titulo'] == titulo_dig:
                 quant_atual = exemplar['Quantidade']
@@ -21,14 +25,16 @@ class Livro:
                 exemplar['Quantidade'] = quant_nova
                 print(f'\nO LIVRO {titulo_dig} AGORA TEM {quant_nova} EXEMPLARES NO ESTOQUE\n')
                 return
-            else:
-                print('\nO ESTOQUE NÃO FOI MODIFICADO\n')
-                return
+
         print(f'\nO LIVRO {titulo_dig} NÃO FOI ENCONTRADO\n')
-
-
+        
+    def mostrar_informacoes(self, titulo_dig):
+            for exemplar in Livro.livros:
+                if exemplar['Titulo'] == titulo_dig:
+                    print(f"Título: {exemplar['Titulo']}, Autor: {exemplar['Autor']}, Preço: R${exemplar['Preço']}, Quantidade em estoque: {exemplar['Quantidade']}")
+                return
 def menu():
-    return input('\nLIVRARIA\n[1]Adicionar livro\n[2]Adicionar estoque\n')
+    return input('\nLIVRARIA\n[1]Adicionar livro\n[2]Adicionar estoque\n[3]Mostrar informações\n')
 
 def main():
     livro = Livro()
@@ -46,8 +52,12 @@ def main():
             titulo_dig = input('\nQUAL LIVRO DESEJA ADICIONAR MAIS NO ESTOQUE? ')
             quant_dig = int(input('QUANTOS EXEMPLARES DESEJA ADICIONAR? '))
             livro.adicionar_estoque(titulo_dig, quant_dig)
-
+            
         elif opc == '3':
+            titulo_dig = input('\nQUAL LIVRO DESEJA BUSCAR NO ESTOQUE? ')
+            livro.mostrar_informacoes(titulo_dig)
+            
+        elif opc == '4':
             print('\nENCERRANDO SISTEMA...\n')
             break
         else:
@@ -56,5 +66,4 @@ def main():
 if __name__ == '__main__':
     main()
 
-
-
+    
